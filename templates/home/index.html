@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Duichakkey{% endblock title %}
+
+{% block css %}
+<style>
+    a{
+        text-decoration: none;
+        color: white;
+        font-size: 20px;
+        border: 2px solid white;
+        border-radius: 10px;
+        padding: 4px 8px;
+    }
+</style>
+{% endblock css %}
+
+{% block content %}
+<h1>Hello this is duichakkey website</h1>
+<br><br>
+{% if user.is_authenticated %}
+<a href="{% url 'profile' %}">Profile</a>
+{% else %}
+<a href="{% url 'login' %}">Login</a>
+<a href="{% url 'signup' %}">Signup</a>
+{% endif %}
+{% endblock content %}
+
+{% block js %}
+{% endblock js %}
