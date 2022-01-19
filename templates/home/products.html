@@ -1,0 +1,324 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}२ Chakkey{% endblock title %}
+{% block css %}
+<link href="{% static 'css/shop.css' %}" rel="stylesheet">
+{% endblock css %}
+{% block content %}
+
+<section id="shop">
+    <div class="container">
+     <div class="row">
+       <div class="shop_1 clearfix">
+
+        <div class="col-sm-3">
+          <div class="shop_1lm clearfix">
+           <div class="product_1l mgt clearfix">
+           <h4 class="mgt">Shop By Price</h4>
+           <hr>
+           <h6>Range:</h6>
+           <h5 class="bold"> रु12000 - रु25000</h5><br>
+           <h5><input type="checkbox"> <a href="#">रु2000 - रु5000 </a></h5>
+           <h5><input type="checkbox"> <a href="#">रु5000 - रु8000</a></h5>
+           <h5><input type="checkbox"> <a href="#">रु8000 - रु12000 </a>)</h5>
+          </div>
+           <div class="product_1l clearfix">
+           <h4 class="mgt">CATEGORIES</h4>
+           <hr>
+           <h5><input type="checkbox"> <a href="#">Catagory </a></h5>
+           <h5><input type="checkbox"> <a href="#">Catagory </a></h5>
+           <h5><input type="checkbox"> <a href="#">Catagory </a></h5>
+           <h5><input type="checkbox"> <a href="#">Catagory </a></h5>
+           <h5><input type="checkbox"> <a href="#">Catagory</a></h5>
+          </div>
+          <div class="product_1l clearfix">
+           <h4 class="mgt">MANUFACTURER</h4>
+           <hr>
+           <h5><input type="checkbox"> <a href="#">Brake Parts</a></h5>
+           <h5><input type="checkbox"> <a href="#">Accessories </a></h5>
+           <h5><input type="checkbox"> <a href="#">Engine Parts </a></h5>
+           <h5><input type="checkbox"> <a href="#">Hermes </a></h5>
+           <h5><input type="checkbox"> <a href="#">Tommy Hilfiger</a></h5>
+          </div>
+          <div class="product_1l clearfix">
+           <h4 class="mgt">SELECT BY COLOR</h4>
+           <hr>
+           <h5><input type="checkbox"> <a href="#">Black </a></h5>
+           <h5><input type="checkbox"> <a href="#">Blue </a></h5>
+           <h5><input type="checkbox"> <a href="#">Brown </a></h5>
+           <h5><input type="checkbox"> <a href="#">Green </a></h5>
+           <h5><input type="checkbox"> <a href="#">Pink </a></h5>
+          </div>
+          <div class="product_1l clearfix">
+           <h4 class="mgt">Recent Post</h4>
+           <hr>
+           <div class="product_1li clearfix">
+            <img src="{% static 'images/jacket.jpg' %}" width="100px" alt="abc">
+            <h5 class="mgt"><a href="#">Best Clothe</a> <br>रु8900</h5>
+            <span>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star-o"></i>
+            </span>
+           </div>
+           <div class="product_1li clearfix">
+            <img src="{% static 'images/tank.jpg' %}" width="100px" alt="abc">
+            <h5 class="mgt"><a href="#">Nice Parts</a> <br>रु6900</h5>
+            <span>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star-half-o"></i>
+            </span>
+           </div>
+           <div class="product_1li border_none pdb clearfix">
+            <img src="{% static 'images/stand.jpg' %}" width="100px" alt="abc">
+            <h5 class="mgt"><a href="#">Good Parts</a> <br>रु9999</h5>
+            <span>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+            </span>
+           </div>
+          </div>
+          </div>
+        </div>
+
+        <div class="col-sm-9">
+         <div class="product_1rm clearfix">
+
+          <div class="sell_o_1 clearfix">
+            {% for pro in allprod %}
+            <div class="col-sm-4" style="margin-top: 20px;box-shadow: .5px .5px 2px rgb(219, 219, 219);">
+                <div class="arriv_2m clearfix">
+                  <div class="arriv_2m1 clearfix">
+                    <a href="{% url 'productdetail' pro.id %}"><img src="/media/{{pro.photo}}" alt="abc" class="iw"></a>
+                  </div>
+                  <div class="arriv_2m2 clearfix">
+                    <h5 class="text-center mgt">New</h5>
+                  </div>
+                  <div class="arriv_2m2n clearfix">
+                    <h5 class="text-center mgt">Sale</h5>
+                  </div>
+                  <div class="arriv_2m3 clearfix">
+                    <h4 class="bold mgt">{{pro.category}}</h4>
+                    <p><a href="{% url 'productdetail' pro.id %}">{{pro.name}}</a></p>
+                    <span class="span_1">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    </span>
+                    <h3 class="normal">
+                    <span class="span_2">रु{{pro.marked_price}}</span>
+                    <span class="span_3 col_1"> रु{{pro.selling_price}}</span> 
+                    </h3>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+          </div>
+
+          <!-- <div class="sell_o_1 clearfix">
+            <div class="col-sm-4">
+                <div class="arriv_2m clearfix">
+                  <div class="arriv_2m1 clearfix">
+                    <a href="#"><img src="{% static 'images/radiator.jpg' %}" alt="abc" class="iw"></a>
+                  </div>
+                  <div class="arriv_2m2 clearfix">
+                    <h5 class="text-center mgt">New</h5>
+                  </div>
+                  <div class="arriv_2m2n clearfix">
+                    <h5 class="text-center mgt">Sale</h5>
+                  </div>
+                  <div class="arriv_2m3 clearfix">
+                    <h4 class="bold mgt">PRODUCT</h4>
+                    <p><a href="#">२Chakkey</a></p>
+                    <span class="span_1">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    </span>
+                    <h3 class="normal">
+                    <span class="span_2">रु4500</span>
+                    <span class="span_3 col_1"> रु3400</span> 
+                    </h3>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="arriv_2m clearfix">
+                  <div class="arriv_2m1 clearfix">
+                    <a href="#"><img src="{% static 'images/tank.jpg' %}" alt="abc" class="iw"></a>
+                  </div>
+                  <div class="arriv_2m2 clearfix">
+                    <h5 class="text-center mgt">New</h5>
+                  </div>
+                  <div class="arriv_2m2n clearfix">
+                    <h5 class="text-center mgt">Sale</h5>
+                  </div>
+                  <div class="arriv_2m3 clearfix">
+                    <h4 class="bold mgt">OTHER</h4>
+                    <p><a href="#">oil tank</a></p>
+                    <span class="span_1">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    </span>
+                    <h3 class="normal">
+                    <span class="span_2">रु5500</span>
+                    <span class="span_3 col_1"> रु4400</span> 
+                    </h3>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="arriv_2m clearfix">
+                  <div class="arriv_2m1 clearfix">
+                    <a href="#"><img src="{% static 'images/mirror.jpg' %}" alt="abc" class="iw"></a>
+                  </div>
+                  <div class="arriv_2m2 clearfix">
+                    <h5 class="text-center mgt">New</h5>
+                  </div>
+                  <div class="arriv_2m2n clearfix">
+                    <h5 class="text-center mgt">Sale</h5>
+                  </div>
+                  <div class="arriv_2m3 clearfix">
+                    <h4 class="bold mgt">POPULAR</h4>
+                    <p><a href="#">mirror</a></p>
+                    <span class="span_1">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    </span>
+                    <h3 class="normal">
+                    <span class="span_2">रु6500</span>
+                    <span class="span_3 col_1"> रु5400</span> 
+                    </h3>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="sell_o_1 clearfix">
+            <div class="col-sm-4">
+                <div class="arriv_2m clearfix">
+                  <div class="arriv_2m1 clearfix">
+                    <a href="#"><img src="{% static 'images/saddlebag.jpg' %}" alt="abc" class="iw"></a>
+                  </div>
+                  <div class="arriv_2m2 clearfix">
+                    <h5 class="text-center mgt">New</h5>
+                  </div>
+                  <div class="arriv_2m2n clearfix">
+                    <h5 class="text-center mgt">Sale</h5>
+                  </div>
+                  <div class="arriv_2m3 clearfix">
+                    <h4 class="bold mgt">PRODUCT</h4>
+                    <p><a href="#">saddlebag</a></p>
+                    <span class="span_1">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    </span>
+                    <h3 class="normal">
+                    <span class="span_2">रु4500</span>
+                    <span class="span_3 col_1"> रु3400</span> 
+                    </h3>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="arriv_2m clearfix">
+                  <div class="arriv_2m1 clearfix">
+                    <a href="#"><img src="{% static 'images/licenceholder.jpg' %}" alt="abc" class="iw"></a>
+                  </div>
+                  <div class="arriv_2m2 clearfix">
+                    <h5 class="text-center mgt">New</h5>
+                  </div>
+                  <div class="arriv_2m2n clearfix">
+                    <h5 class="text-center mgt">Sale</h5>
+                  </div>
+                  <div class="arriv_2m3 clearfix">
+                    <h4 class="bold mgt">OTHER</h4>
+                    <p><a href="#">licenceholder</a></p>
+                    <span class="span_1">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    </span>
+                    <h3 class="normal">
+                    <span class="span_2">रु5500</span>
+                    <span class="span_3 col_1"> रु4400</span> 
+                    </h3>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="arriv_2m clearfix">
+                  <div class="arriv_2m1 clearfix">
+                    <a href="#"><img src="{% static 'images/gearbox.jpg' %}" alt="abc" class="iw"></a>
+                  </div>
+                  <div class="arriv_2m2 clearfix">
+                    <h5 class="text-center mgt">New</h5>
+                  </div>
+                  <div class="arriv_2m2n clearfix">
+                    <h5 class="text-center mgt">Sale</h5>
+                  </div>
+                  <div class="arriv_2m3 clearfix">
+                    <h4 class="bold mgt">POPULAR</h4>
+                    <p><a href="#">N२Chakkey</a></p>
+                    <span class="span_1">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    </span>
+                    <h3 class="normal">
+                    <span class="span_2">रु6500</span>
+                    <span class="span_3 col_1"> रु5400</span> 
+                    </h3>
+                  </div>
+                </div>
+            </div>
+          </div> -->
+
+          <!-- PAGINATION -->
+          <div class="product_1_last text-center clearfix">
+            <div class="col-sm-12">
+              <ul>
+                <li class="act"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">6</a></li>
+                <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+              </ul>
+            </div>
+          </div>
+
+         </div>
+        </div>
+
+       </div>
+     </div>
+    </div>
+</section>
+{% endblock content %}

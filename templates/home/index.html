@@ -1,30 +1,296 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Duichakkey{% endblock title %}
-
+{% block title %}२ Chakkey{% endblock title %}
 {% block css %}
-<style>
-    a{
-        text-decoration: none;
-        color: white;
-        font-size: 20px;
-        border: 2px solid white;
-        border-radius: 10px;
-        padding: 4px 8px;
-    }
-</style>
+<link href="{% static 'css/index.css' %}" rel="stylesheet">
 {% endblock css %}
 
 {% block content %}
-<h1>Hello this is duichakkey website</h1>
-<br><br>
-{% if user.is_authenticated %}
-<a href="{% url 'profile' %}">Profile</a>
-{% else %}
-<a href="{% url 'login' %}">Login</a>
-<a href="{% url 'signup' %}">Signup</a>
-{% endif %}
-{% endblock content %}
+<section id="center" class="clearfix center_home">
+	<div class="container">
+		<div class="row">
+			<div class="center_home_1 clearfix">
+				<div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner">
+						<div class="item active">
+							<div class="col-sm-6">
+								<div class="center_home_l clearfix">
+									<h4 class="mgt">World Best Quality Spare parts</h4>
 
-{% block js %}
-{% endblock js %}
+									<hr>
+									<p>For nearly 20 years, residents throughout the local area have turned to bike
+										Repair for all of their automotive repair needs. With free estimates and fast
+										turnaround, we are known for our personal service and expertise in all forms of
+										specialized engine repair. We use the latest and most modern diagnostic
+										technology to have you back in your bike.
+
+									</p>
+									<h5 class="normal"><a class="button" href="product.html">Shopping Now</a></h5>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="center_home_r clearfix">
+									<img src="{% static 'images/slide4.jpg'  %}" class="iw" alt="motorparts"
+										style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="col-sm-6">
+								<div class="center_home_l clearfix">
+									<h4 class="mgt">World Best Quality</h4>
+									<h1>From Chia Lovers</h1>
+									<hr>
+									<p> Lonely, I'm Mr. Lonely
+										I have nobody for my own
+										I'm so lonely, I'm Mr. Lonely
+										I have nobody for my own
+										I'm so lonely</p>
+									<h5 class="normal"><a class="button" href="#">Shopping Now</a></h5>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="center_home_r clearfix">
+									<img src="{% static 'images/slide2.jpg' %}" class="iw" alt="abc">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="sell_1 clearfix">
+
+					<div class="col-sm-12">
+						<!-- Controls -->
+						<div class="controls text-center">
+							<a class="left fa fa-chevron-left btn btn-success" href="#carousel-example"
+								data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-success"
+								href="#carousel-example" data-slide="next"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="Categ">
+	<div class="container">
+		<div class="row">
+			<div class="Categ_1 clearfix">
+				<div class="col-sm-12">
+					<h3 class="mgt">Popular Categories</h3>
+					<hr>
+				</div>
+			</div>
+			<div class="Categ_2 clearfix">
+				<div class="col-sm-3">
+					<div class="Categ_2i clearfix">
+						<a href="#"><img src="{% static 'images/bulletwheel.jpg' %}" width="100px" alt="abc"></a>
+						<h4 class="mgt"><a href="#">Alloy Wheel</a></h4>
+
+
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="Categ_2i clearfix">
+						<a href="#"><img src="{% static 'images/bulletlightcover.jpg' %}" width="100px" alt="abc"></a>
+						<h4 class="mgt"><a href="#">Bullet Light cover</a></h4>
+
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="Categ_2i clearfix">
+						<a href="#"><img src="{% static 'images/shockerpipe.jpg' %}" width="100px"></a>
+						<h4 class="mgt"><a href="#">Rare Shocker Pipe</a></h4>
+
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="Categ_2i clearfix">
+						<a href="#"><img src="{% static 'images/chain.jpg' %}" width="100px" alt="abc"></a>
+						<h4 class="mgt"><a href="#">Timing Chain</a></h4>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	</div>
+</section>
+
+<section id="collection">
+	<div class="container">
+		<div class="row">
+			<div class="collect_1 clearfix">
+				<div class="col-sm-4">
+					<div class="collect_1l clearfix">
+						<div class="col-sm-5 space_all">
+							<div class="collect_1ll clearfix">
+								<h4 class="mgt col_2">R15</h4>
+								<h3>10% Off</h3>
+								<h6><a class="button mgt" href="#"> Shop Now</a></h6>
+							</div>
+						</div>
+						<div class="col-sm-7 space_right">
+							<div class="collect_1lr clearfix">
+								<a href="#"><img src="{% static 'images/yamaha.jpg' %}" width="150px" alt="abc" class="iw"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="collect_1l clearfix">
+						<div class="col-sm-5 space_all">
+							<div class="collect_1ll clearfix">
+								<h4 class="mgt col_2">RE</h4>
+								<h3>15% Off</h3>
+								<h6><a class="button mgt" href="#"> Shop Now</a></h6>
+							</div>
+						</div>
+						<div class="col-sm-7 space_right">
+							<div class="collect_1lr clearfix">
+								<a href="#"><img src="{% static 'images/Bullet.jpg' %}" alt="abc" class="iw"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="collect_1l clearfix">
+						<div class="col-sm-5 space_all">
+							<div class="collect_1ll clearfix">
+								<h4 class="mgt col_2">New Tools</h4>
+								<h3>20% Off</h3>
+								<h6><a class="button mgt" href="#"> Shop Now</a></h6>
+							</div>
+						</div>
+						<div class="col-sm-7 space_right">
+							<div class="collect_1lr clearfix">
+								<a href="#"><img src="{% static 'images/gloves.jpg' %}" alt="abc" class="iw"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="sell">
+	<div class="container">
+		<div class="row">
+			<div class="sell_1_o clearfix">
+				<div class="col-sm-5 space_left sell_1_ol">
+					<h2 class="mgt">New Arrivals</h2>
+					<hr>
+				</div>
+				<div class="col-sm-7 space_left">
+					<!-- Controls -->
+					<div class="clearfix sell_1_or text-right">
+						<ul class="nav_1_tab">
+							<li class="active"><a data-toggle="tab" href="#home">NEW </a></li>
+							<li class=""><a data-toggle="tab" href="#menu1">TRENDING </a></li>
+							<li><a data-toggle="tab" href="#menu2">POPULAR </a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<div class="tab-content clearfix">
+				<div id="home" class="tab-pane fade  clearfix active in">
+					<div class="click clearfix">
+						<div class="sell_o_1 clearfix">
+							{% for pro in newarrivalprod %}
+							<div class="col-sm-3 space_left">
+								<div class="arriv_2m clearfix">
+									<div class="arriv_2m1 clearfix">
+										<a href="{% url 'productdetail' pro.id %}"><img src="/media/{{pro.photo}}" alt="abc" class="iw"></a>
+									</div>
+									<div class="arriv_2m2 clearfix">
+										<h5 class="text-center mgt">New</h5>
+									</div>
+									<div class="arriv_2m2n clearfix">
+										<h5 class="text-center mgt">Sale</h5>
+									</div>
+									<div class="arriv_2m3 clearfix">
+										<h4 class="bold mgt">{{pro.category}}</h4>
+										<p><a href="#">{{pro.name}}</a></p>
+
+										<h3 class="normal" style="font-size: 24px;">
+											<span class="span_2">रु {{pro.marked_price}}</span>
+											<span class="span_3 col_1"> रु {{pro.selling_price}}</span>
+										</h3>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+
+				<div id="menu1" class="tab-pane fade  clearfix">
+					<div class="click clearfix">
+						<div class="sell_o_1 clearfix">
+							{% for pro in newtrendingprod %}
+							<div class="col-sm-3 space_left">
+								<div class="arriv_2m clearfix">
+									<div class="arriv_2m1 clearfix">
+										<a href="#"><img src="{%static 'images/jacket.jpg'%}" alt="abc" class="iw"></a>
+									</div>
+									<div class="arriv_2m2 clearfix">
+										<h5 class="text-center mgt">New</h5>
+									</div>
+									<div class="arriv_2m2n clearfix">
+										<h5 class="text-center mgt">Sale</h5>
+									</div>
+									<div class="arriv_2m3 clearfix">
+										<h4 class="bold mgt">PRODUCT</h4>
+										<p><a href="#">Naminos elementum disus tincidunts cosmo de cosmopolis</a></p>
+
+										<h3 class="normal">
+											<span class="span_2">रु4500</span>
+											<span class="span_3 col_1"> रु3400</span>
+										</h3>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<div id="menu2" class="tab-pane fade  clearfix">
+					<div class="click clearfix">
+						<div class="sell_o_1 clearfix">
+							{%for pro in newpopularprod %}
+							<div class="col-sm-3 space_left">
+								<div class="arriv_2m clearfix">
+									<div class="arriv_2m1 clearfix">
+										<a href="#"><img src="{%static 'images/yamaha.jpg'%}" alt="abc" class="iw"></a>
+									</div>
+									<div class="arriv_2m2 clearfix">
+										<h5 class="text-center mgt">New</h5>
+									</div>
+									<div class="arriv_2m2n clearfix">
+										<h5 class="text-center mgt">Sale</h5>
+									</div>
+									<div class="arriv_2m3 clearfix">
+										<h4 class="bold mgt">Yamaha rare</h4>
+										<p><a href="#">Naminos elementum disus tincidunts cosmo de cosmopolis</a></p>
+
+										<h3 class="normal">
+											<span class="span_2">रु4500</span>
+											<span class="span_3 col_1"> रु3400</span>
+										</h3>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock content %}

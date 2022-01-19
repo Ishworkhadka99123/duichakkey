@@ -6,15 +6,341 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/global.css' %}" rel="stylesheet">
     {% block css %}
     {% endblock css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+    <!-- <script src="{% static 'js/jquery-2.1.1.min.js' %}"></script> -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/cbf82048f1.js" crossorigin="anonymous"></script>
+    {% block additionalhead %}
+    {% endblock additionalhead %}
 </head>
 <body>
+
+    <!-- READ IT -->
+    <!-- EKTAL SIGNUP GARERA TRY GARNU, ARKO TAL LOGIN GARERA, ALSO PUG WRONG CREDIENTIALS TO CHECK THE VALIDATION
+    CAPABILITY OF THE SYSTEM, TRY LOGGINING IN WITH THE ADMIN USERNAME AND PASSWORD (Duichakkey_Admin, sagarmatha)
+    AND TRY LOGGINING IN WITH THE NORMAL USER ACCOUNT AND SEE THE DIFFERENCE IN THE NAVBAR -->
+
+    <section id="header">
+        <div class="container">
+         <div class="row">
+          <div class="header_1 clearfix">
+           <div class="col-sm-3">
+            <div class="header_1l clearfix">
+             <h2 class="mgt"><a href="{% url 'home' %}"><i class="fa fa-wrench"></i> <span class="col_1">२</span> Chakkey</a></h2>
+            </div>
+           </div>
+           <div class="col-sm-6">
+            <div class="header_1m clearfix">
+             <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search Products...">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            </div>
+           </div>
+           <div class="header_1r clearfix">
+                <ul class="nav navbar-nav mgt navbar-right">
+                    {% if user.is_authenticated %}
+                    {% if user.is_superuser%}
+                    <li><a class="tag_m1" href="/admin/" target="_blank"><i class="fas fa-users-cog"></i></a></li>
+                    {% endif %}
+                    <li><a class="tag_m1" href="{% url 'profile' user.id %}" ><i class="fa fa-user"></i></a></li>
+                    {% else %}
+                    <li><a class="tag_m1" href="{% url 'login' %}" ><i class="fas fa-sign-in-alt"></i></a></li>
+                    {% endif %}
+                    <li class="dropdown">
+                        <a class="tag_m1" href="#" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-shopping-cart"></i></a>
+                        <ul class="dropdown-menu drop_1" role="menu">
+                            <li >
+                                <div class="drop_1i clearfix">
+                                    <div class="col-sm-6">
+                                        <div class="drop_1il clearfix"><h5 class="mgt">ITEMS</h5></div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="drop_1il text-right clearfix"><h5 class="mgt"><a href="{% url 'cart' %}">VIEW CART</a></h5></div>
+                                    </div>
+                                </div>
+                                <div class="drop_1i1 clearfix cartpopupprodcontainer">
+                                    {% for pro in cartprod %}
+                                    <div class="cartpopupprod cartpopupprod{{pro.product.id}}" data-prod-subtotal="{{pro.sub_total}}" data-prod-total="{{cartprodtotal}}" data-prod-id="{{pro.product.id}}" data-delete-url="/delete-from-cart/" style="display: flex;justify-content: space-evenly;">
+                                        <div class="cartpopupprodimage">
+                                            <img src="{{pro.product.photo.url}}" alt="" style="width: 100px;">
+                                            <p>{{pro.quantity}} * {{pro.product.selling_price}}</p>
+                                        </div>
+                                        <div class="cartpopupproddesc">
+                                            <p><a href=""><strong>{{pro.product.name}}</strong></a></p>
+                                            <p><strong> = Rs.{{pro.sub_total}}</strong></p>
+                                        </div>
+                                        <div class="cartpopupprodremove">
+                                            <button class="popupDeleteCart"><i class="fa fa-trash" style="margin-top: 12px;"></i></button>
+                                        </div>
+                                        <!-- <div class="cartpopupprodremove">
+                                            <button class="popupDeleteCart" style="border: none;outline: none;background: none;"><i class="fa fa-trash" style="margin-top: 12px;"></i></button>
+                                        </div> -->
+                                    </div>
+                                    {% endfor %}
+                                    <!-- {{cartprodcount}}
+                                    {% if cartprod %}
+                                    {% for pro in cartprod %}
+                                    {{pro.product}}
+                                    {% endfor %}
+                                    {% endif %} -->
+                                </div>
+                                <div class="drop_1i2 clearfix">
+                                    <div class="col-sm-6">
+                                        <div class="drop_1il clearfix"><h5 class="mgt">TOTAL</h5></div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="drop_1il text-right clearfix"><h5 class="mgt cartproducttotal" >Rs.{{cartprodtotal}}</h5></div>
+                                    </div>
+                                </div>
+                                <div class="drop_1i3 text-center clearfix">
+                                    <div class="col-sm-12">
+                                        <h5><a class="button_1 block" href="#">CHECKOUT</a></h5>
+                                        <h5><a class="button block" href="{% url 'cart' %}">VIEW CART</a></h5>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+          </div>
+         </div>
+        </div>
+    </section>
+       
+    <section id="menu" class="clearfix cd-secondary-nav">
+        <nav class="navbar nav_t">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'home' %}"><i class="fa fa-wrench"></i> <span class="col_1">Tool</span> Store</a>
+                </div>
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                    
+                    <li><a class="m_tag active_tab" href="{% url 'home' %}">Home</a></li>
+                    <li class="dropdown">
+                            <a class="m_tag" href="#" data-toggle="dropdown" role="button" aria-expanded="false">Product<span class="caret"></span></a>
+                            <ul class="dropdown-menu drop_3" role="menu">
+                            <li><a href="{% url 'products' %}">Product</a></li>
+                            
+                            </ul>
+                        </li>
+                    
+                    
+                    <li><a class="m_tag" href="{% url 'about' %}">About Us</a></li>
+                    <li><a class="m_tag" href="{% url 'contact' %}">Contact</a></li>
+                    <li class="dropdown">
+                            <a class="m_tag" href="#" data-toggle="dropdown" role="button" aria-expanded="false">Pages<span class="caret"></span></a>
+                            <ul class="dropdown-menu drop_3" role="menu">
+                            <li><a href="cart.html">Cart</a></li>
+                            <li><a class="border_none" href="checkout.html">Checkout</a></li>
+                            </ul>
+                        </li>
+                    <li class="dropdown dropdown-large">
+                    <a href="#" class="dropdown-toggle m_tag" data-toggle="dropdown">Companies<b class="caret"></b></a>
+                    
+                    <ul class="dropdown-menu dropdown-menu-large row">
+                        <li class="col-sm-3">
+                            <ul>
+                                <li class="dropdown-header">SHOP LAYOUTS</li>
+                                <li><a href="#">Available glyphs</a></li>
+                                <li><a href="#">Examples</a></li>
+                                <li><a href="#">Example</a></li>
+                                <li><a href="#">Aligninment options</a></li>
+                                <li><a href="#">Headers</a></li>
+                                <li><a href="#">Disabled menu items</a></li>
+                            </ul>
+                        </li>
+                        <li class="col-sm-3">
+                            <ul>
+                                <li class="dropdown-header">OTHER PAGES</li>
+                                <li><a href="#">Basic example</a></li>
+                                <li><a href="#">Button toolbar</a></li>
+                                <li><a href="#">Sizing</a></li>
+                                <li><a href="#">Nesting</a></li>
+                                <li><a href="#">Vertical variation</a></li>
+                                <li><a href="#">Single button dropdowns</a></li>
+                            </ul>
+                        </li>
+                        <li class="col-sm-3">
+                            <ul>
+                                <li class="dropdown-header">PRODUCT TYPES</li>
+                                <li><a href="#">Basic example</a></li>
+                                <li><a href="#">Button toolbar</a></li>
+                                <li><a href="#">Sizing</a></li>
+                                <li><a href="#">Nesting</a></li>
+                                <li><a href="#">Vertical variation</a></li>
+                                <li><a href="#">Single button dropdowns</a></li>
+                            </ul>
+                        </li>
+                        <li class="col-sm-3">
+                            <ul>
+                                <li class="dropdown-header">OTHER TYPES</li>
+                                <li><a href="#">Basic example</a></li>
+                                <li><a href="#">Button toolbar</a></li>
+                                <li><a href="#">Sizing</a></li>
+                                <li><a href="#">Nesting</a></li>
+                                <li><a href="#">Vertical variation</a></li>
+                                <li><a href="#">Single button dropdowns</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                </li>
+                </ul>
+                    
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        
+    </section>
+
     {% block content %}
-    {% endblock content %}
+    {% endblock content %} 
+
+    <section id="connect" class="clearfix">
+        <div class="container">
+         <div class="row">
+          <div class="col-sm-12 space_all">
+           <div class="connect_1 clearfix">
+            <div class="col-sm-3 connect_1m">
+             <div class="connect_1l clearfix">
+               <span><i class="fa fa-truck"></i></span>
+             </div>
+             <div class="connect_1r clearfix">
+              <h4>Free Shipping</h4>
+              <p>Free shipping world wide</p>
+             </div>
+            </div>
+            <div class="col-sm-3 connect_1m">
+             <div class="connect_1l clearfix">
+               <span><i class="fa fa-headphones"></i></span>
+             </div>
+             <div class="connect_1r clearfix">
+              <h4>Support 24/7</h4>
+              <p>Contact us 24 hours a day</p>
+             </div>
+            </div>
+            <div class="col-sm-3 connect_1m">
+             <div class="connect_1l clearfix">
+               <span><i class="fa fa-credit-card"></i></span>
+             </div>
+             <div class="connect_1r clearfix">
+              <h4>Secure Payments</h4>
+              <p>100% payment protection</p>
+             </div>
+            </div>
+            <div class="col-sm-3 connect_1m border_none">
+             <div class="connect_1l clearfix">
+               <span><i class="fa fa-shopping-cart"></i></span>
+             </div>
+             <div class="connect_1r clearfix">
+              <h4>Easy Return</h4>
+              <p>Simple returns policy</p>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+    </section>
+       
+    <section id="footer" class="clearfix">
+    <div class="container">
+        <div class="row">
+        <div class="footer_1 clearfix">
+        <div class="col-sm-3">
+        <div class="footer_1l clearfix">
+            <h2 class="mgt"><a href="{% url 'home' %}"><i class="fa fa-wrench"></i> <span class="col_1">२</span> Chakkey</a></h2>
+            <p>We are a team of designers and developers that create high quality Magento, Prestashop, Opencart...</p>
+            <div class="footer_1li cleafix">
+            
+            
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-5">
+        <div class="footer_1m clearfix">
+            <h4>Subscribe Newsletter To Get Updated</h4><br>
+            <div class="header_1m clearfix">
+            <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button">
+                                Subscribe</button>
+                        </span>
+                    </div>
+        </div>
+            <p>We are a team of designers and developers that create high quality Magento, Prestashop, Opencart...</p>
+            <ul class="social-network social-circle">
+                            <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+        </div>
+        </div>
+        <div class="col-sm-4">
+        <div class="footer_1r clearfix">
+            <h4>Information</h4>
+            <ul>
+            <li><a href="#">Delivery <span class="pull-right">Legal Notice</span></a></li>
+            <li><a href="#">About Us <span class="pull-right">Secure payment</span></a></li>
+            <li><a href="#">Contact Us <span class="pull-right">Sitemap</span></a></li>
+            <li><a href="#">Stores <span class="pull-right">My Account</span></a></li>
+            </ul>
+        </div>
+        </div>
+        </div>
+        <div class="footer_2 text-center clearfix">
+        <div class="col-sm-12">
+        <p class="mgt">© 2021 २Chakkey. All Rights Reserved | Design by Chiya Lovers </p>
+        </div>
+        </div>
+        </div>
+    </div>
+    </section>
+       
 
     {% block js %}
     {% endblock js %}
+    <script src="{% static 'js/cart.js' %}"></script>
+    <script>
+    $(document).ready(function(){
+        /*****Fixed Menu******/
+        var secondaryNav = $('.cd-secondary-nav'),
+            secondaryNavTopPosition = secondaryNav.offset().top;
+            $(window).on('scroll', function(){
+                if($(window).scrollTop() > secondaryNavTopPosition ) {
+                    secondaryNav.addClass('is-fixed');	
+                } else {
+                    secondaryNav.removeClass('is-fixed');
+                }
+            });	
+            
+    });
+    </script>
 </body>
 </html>

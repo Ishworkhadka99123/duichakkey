@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My Cart{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/cartpage.css' %}">
+{% endblock css %}
+{% block content %}
+<div class="container cart">
+    <table>
+      <tr id='carttablerow'>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </tr>
+      {% if cartprod %}
+      {% for c in cartprod %}
+      <tr data-table-id = '{{c.product.id}}' data-table-url = '{% url "delete_from_cart" %}' class='datatableid{{c.product.id}}' id='carttablerow'>
+        <td>
+          <div class="cart-info">
+            <img src="{{c.product.photo.url}}" alt="" />
+            <div>
+             <a href="{% url 'productdetail' c.product.id %}"> <span style="color: #ff2e2e;font-size: 1.8rem;"><strong>{{c.product.name}}</strong></span><br></a>
+              <span>Price: Rs.{{c.product.selling_price}}</span> <br />
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="cartbutton" style="justify-content: flex-start;">
+            <button data-id="{{c.product.id}}" data-url="{% url 'remove_from_cart' %}" class="minusbutton mb{{c.product.id}}" style="display: flex; align-items: center;justify-content: center;">-</button>
+            <span data-id="{{c.product.id}}"class="buttontext bt{{c.product.id}}" style="display: flex;align-items: center;justify-content: center;margin-bottom: 1rem;">{{c.quantity}}</span>
+            <button data-id="{{c.product.id}}" data-url="{% url 'add_to_cart' %}" class="plusbutton pb{{c.product.id}}" style="display: flex;align-items: center;justify-content: center;">+</button>
+          </div>
+        </td>
+        <td><input type="hidden" class="subTotals" name="subtotal" data-subtotal='{{c.sub_total}}'> Rs.{{c.sub_total}}</td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <h3>No products in your cart🥺</h3>
+      {% if user.is_anonymous %}
+      <h3><a style="color: #ff2e2e;" href="{% url 'login' %}">Login</a> or <a style="color: #ff2e2e;" href="{% url 'signup' %}">Signup</a> to add products to your cart😃</h3>
+      {% endif %}
+      {% endif %}
+    </table>
+    <div class="total-price">
+      <table>
+        <tr>
+          <td>Total Cost:</td>
+          <td class="prodOnlyTotal"></td>
+        </tr>
+        <!-- <tr>
+          <td>Tax</td>
+          <td>$50</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>$250</td>
+        </tr> -->
+      </table>
+      {% if user.is_authenticated %}
+      <a href="#" class="checkout btn">Proceed To Checkout</a>
+      {% else %}
+      <button class="checkout btn" style="cursor: pointer;outline: none;border: none;">Proceed To Checkout</button>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock content %}
+{% block js %}
+<script>
+  const subTotals = document.querySelectorAll('.subTotals');
+  let total = 0
+  subTotals.forEach(element => {
+    total +=parseFloat(element.getAttribute('data-subtotal'))
+  });
+  document.querySelector('.prodOnlyTotal').innerText = 'Rs.'+total+'.0';
+  console.log(total)
+</script>
+{% endblock js %}

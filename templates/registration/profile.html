@@ -4,11 +4,18 @@
 
 {% block css %}
 <style>
-    a{
+    .plcontainer {
+        margin: 30px 20px;
+        padding: 20px 0 40px 30%;
+        background: rgb(245, 245, 245);
+        border-radius: 10px;
+        box-shadow: inset 0 0 5px rgb(219, 219, 219), 0 0 50px rgb(194, 194, 194);
+    }
+    .profile-links {
         text-decoration: none;
-        color: white;
+        color: rgb(17, 17, 17);
         font-size: 20px;
-        border: 2px solid white;
+        border: 2px solid rgb(255, 55, 28);
         border-radius: 10px;
         padding: 4px 8px;
     }
@@ -17,15 +24,18 @@
 
 {% block content %}
 <h1>Profile Page</h1>
- <h3>Welcome {{name}}</h3>
+ <h3>Welcome {{request.user}}</h3>
  {% if messages %}
   {% for message in messages %}
    <small {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</small>
   {% endfor %}
  {% endif %}
  <br><br>
- <a href="{% url 'home' %}">Home</a>
- <a href="{% url 'logout' %}">Logout</a>
+ <div class="plcontainer">
+    <a class="profile-links" href="{% url 'home' %}">Home</a>
+    <a class="profile-links" href="{% url 'change-password' %}">Change Password</a>
+    <a class="profile-links" href="{% url 'logout' %}">Logout</a>
+ </div>
 {% endblock content %}
 
 {% block js %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/cartstyle.css' %}">
+{% endblock css %}
+{% block content %}
+<!-- Product Details -->
+<section class="cartsection product-detail">
+    <div class="details cartcontainer">
+        <div class="left image-container">
+        <div class="main">
+            <img src="{{product.photo.url}}" id="zoom" alt="" />
+        </div>
+        </div>
+        <div class="right">
+        <span>{{product.category.title}}</span>
+        <h1>{{product.name}}</h1>
+        <div class="price">Rs. {{product.selling_price}}</div>
+        {% if productincart == 'Yes' %}
+        <span style="display: block;">Product already added to cart😃</span>
+        <a href="{% url 'cart' %}" class="addCart showincartbtn"><button>Show In Cart</button></a>
+        {% else %}
+        <br>
+        {% if product.available_quantity > 0 %}
+        <div class="cartbutton" style="display: flex;justify-content: flex-start;align-items: center;z-index: 9;padding: 0;margin-bottom: .5rem;margin-top: -2rem;">
+            {% if user.is_authenticated %}
+            <button data-id="{{product.id}}" data-url="{% url 'add_to_cart' %}" class="initialbutton ib{{product.id}}" style="padding: 1.8rem;line-height: .2;border-radius: .5rem;">Add To Cart</button>
+            <button data-id="{{product.id}}" data-url="{% url 'remove_from_cart' %}" class="minusbutton mb{{product.id}}" style="padding: 1.8rem;line-height: .2;border-radius: .5rem 0 0 .5rem;">-</button>
+            <span data-id="{{product.id}}"class="buttontext bt{{product.id}}" style="padding: 1.8rem;line-height: .2;"></span>
+            <button data-id="{{product.id}}" data-url="{% url 'add_to_cart' %}" class="plusbutton pb{{product.id}}" style="padding: 1.8rem;line-height: .2;border-radius: 0 .5rem .5rem 0;">+</button>
+            {% else %}
+            <button class="initialbutton show-message-popup" style="padding: 1.8rem;line-height: .2;border-radius: .5rem;">Add To Cart</button>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="cartbutton" style="display: flex;justify-content: flex-start;align-items: center;z-index: 9;padding: 0;margin-bottom: .5rem;margin-top: -2rem;cursor: not-allowed;">
+            <button class="initialbuttondisabled" style="padding: 1.8rem;line-height: .2;border-radius: 3rem;;cursor: not-allowed;">Add To Cart</button>
+        </div>
+        {% endif %}
+
+        {% endif %}
+        {% if product.available_quantity > 0 %}
+        <p style="color: #ea1c26;font-weight: 500;">In Stock</p>
+        {% else %}
+        <p style="color: rgb(255, 16, 16);font-weight: 500;">This product is currently not available</p>
+        {% endif %}
+        <h3>Product Detail</h3>
+        <p>
+            {{product.desc}}
+        </p>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+{% block js %}
+<!-- <script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/cart.js' %}"></script> -->
+{% endblock js %}

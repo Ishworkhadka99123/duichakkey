@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>{% block title %}{% endblock title %}</title>
+<link href="{% static 'css/login.css' %}" rel="stylesheet">
+</head>
+<body>
+    {% block content %}
+    {% endblock content %}
+    {% block js%}
+    {% endblock js%}
+</body>
+</html>

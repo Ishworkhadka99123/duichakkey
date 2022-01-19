@@ -125,9 +125,26 @@ STATICFILES_DIRS = [
     '/var/www/static/',
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR/'media'
 
-LOGIN_REDIRECT_URL = '/profile/'
+LOGIN_REDIRECT_URL = '/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Development
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# EMAIL_BACKEND="django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_FILE_PATH=BASE_DIR / "sent_mails"
+
+
+#Production
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_USE_SSL = True
+# EMAIL_PORT = 578
+# EMAIL_HOST_USER = 'duichakkey@gmail.com'
+# EMAIL_HOST_PASSWORD = 'password'

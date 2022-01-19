@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Customer Page{% endblock title %}
+
+{% block content %} 
+<div class="customer-container">
+    <div class="indicators">
+        <div class="buttons">
+            <a href="{% url 'addcustomer' %}"><button>Add new address</button></a>
+            <a href="{% url 'customers' %}"><button>My addresses</button></a>
+        </div>
+    </div>
+    <div class="customer-form">
+        <form action="{% url 'addcustomer' %}" method="post" novalidate>
+            <h1>Add New Customer/Address</h1>
+            {% csrf_token %}
+            {% for fm in form %}
+            <i style="color: red;font-style: normal;">{{fm.errors|striptags}}</i> {{fm.label_tag}}
+                {{fm}}
+            {% endfor %}
+
+            <div class="buttons">
+                <a href="{% url 'home' %}"><button type="button" class="cancelbtn">Cancel</button></a>
+                <button type="submit" class="signupbtn">Add Adress</button>
+            </div>
+            {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <p class='form-field-error' style="color: red;">{{error}}</p>
+            {% endfor %}
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock content %}
